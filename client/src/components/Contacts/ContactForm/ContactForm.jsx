@@ -29,8 +29,10 @@ const ContactForm = () => {
   const [companiesData, setCompaniesData] = useState(null);
 
   const [getCompanies, { called, loading, data, error}] = useLazyQuery(GET_COMPANIES, {
+    fetchPolicy: 'network-only',
     onCompleted: (data) => {
         setCompaniesData(data);
+        handleChange({ target: { name: 'companyId', value: data.getCompanies[0]._id } });
     }
   });
   useEffect(()=> {
@@ -55,8 +57,11 @@ const ContactForm = () => {
     }
   };
 
+  if(loading) return <p>Loading...</p>;
+  if(error) return <p>Error: {error.message}</p>;
+
   return (
-    <div className="max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
+    <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
         <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-cent">
           Create Contact
@@ -338,8 +343,7 @@ const ContactForm = () => {
               LinkedIn
             </label>
           </div>
-        </div>
-      
+        </div> 
 
         <div className="relative z-0 w-full mb-5 group">
           <input

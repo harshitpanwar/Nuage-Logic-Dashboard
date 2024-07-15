@@ -96,7 +96,7 @@ const UpdateContact = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
+    <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
         <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">Update Contact</h1>
         <div className="grid md:grid-cols-2 md:gap-6">

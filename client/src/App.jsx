@@ -42,10 +42,11 @@ function App() {
   return (
     <div className='app'>
     
-      <Header />
-      <div className='main'>
+      {/* <div className='main'> */}
         <Router>
-          {authData && authData.userId  && <SideBar />}
+        <Header />
+
+          {/* {authData && authData.userId  && <SideBar />} */}
           {/* <SideBar /> */}
           <Routes>
             <Route path='/' exact />
@@ -60,7 +61,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </div>
+    // </div>
   );
 }
 

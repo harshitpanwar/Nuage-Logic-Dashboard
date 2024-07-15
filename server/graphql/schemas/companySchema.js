@@ -42,8 +42,13 @@ const companySchema = gql`
         contacts: [ID]
     }
 
+    type paginatedCompany {
+        companies: [Company]
+        totalCompanies: Int
+    }
+
     type Query {
-        getCompanies: [Company]
+        getCompanies(page: Int, limit: Int): paginatedCompany
     }
 
     type Query {

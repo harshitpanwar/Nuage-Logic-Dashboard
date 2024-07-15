@@ -2,15 +2,21 @@ const Company = require('../../models/company.js');
 const User = require('../../models/user.js');
 const Contact = require('../../models/contact.js');
 
-exports.getCompanies = async () => {
+exports.getCompanies = async (page=1, limit=5) => {
     try {
-        const companies = await Company.find().populate('assigned');
-        return companies.map(company => {
+        const companies = await Company.find().skip((page - 1) * limit).limit(limit).populate('assigned');
+        const totalCompanies = await Company.countDocuments();
+        const companiesArray = companies.map(company => {
             return {
                 ...company._doc,
                 _id: company.id
             };
         });
+        return {
+            companies: companiesArray,
+            totalCompanies: totalCompanies
+        };
+
     } catch (err) {
         throw err;
     }

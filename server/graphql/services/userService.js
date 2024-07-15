@@ -4,6 +4,7 @@ const User = require('../../models/user.js');
 
 exports.createUser = async ({ email, password }) => {
     try {
+        console.log('Create User:', email);
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             throw new Error('User exists already.');

@@ -23,7 +23,7 @@ const ContactDetails = () => {
   };
 
   return (
-    <div className="contact-details">
+    <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
         <div className='flex flex-row justify-between items-baseline'>
           <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">

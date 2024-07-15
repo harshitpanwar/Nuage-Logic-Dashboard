@@ -4,9 +4,9 @@ const contactService = require('../services/contactService');
 
 const companyResolvers = {
     Query: {
-        getCompanies: async (_, inputs, {user}) => {
-            if(!user) throw new Error("Unauthorized");
-            return companyService.getCompanies();
+        getCompanies: async (_, {page, limit}, {user}) => {
+            // if(!user) throw new Error("Unauthorized");
+            return companyService.getCompanies(page, limit);
         },
         getCompany: async (_, { companyId }, {user}) => {
             if(!user) throw new Error("Unauthorized");

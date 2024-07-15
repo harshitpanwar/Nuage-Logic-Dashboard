@@ -37,7 +37,7 @@ const Contacts = () => {
         <div>
           <Link
             to="/create-contact"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="px-2 inline-flex text-xs leading-5 font-semibold rounded-sm bg-blue-100 text-blue-800 p-1 px-3 hover:bg-blue-300 tex-blue-800"
           >
             Add Contact
           </Link>
@@ -53,6 +53,7 @@ const Contacts = () => {
                     <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">First Name</th>
                     <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Last Name</th>
                     <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Groups Tag</th>
+                    <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Work Email</th>
                     <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Status</th>
                     <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Actions</th>
                   </tr>
@@ -68,6 +69,11 @@ const Contacts = () => {
                       </td>
                       <td className="whitespace-nowrap px-4 py-4">
                         <div className="text-sm font-medium text-gray-900">{contact.groupsTag}</div>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-4">
+                        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-grey-100 text-grey-800'>
+                          {contact.workEmail}
+                        </span>
                       </td>
                       <td className="whitespace-nowrap px-4 py-4">
                         {

@@ -12,7 +12,8 @@ const userResolvers = {
     },
     Mutation: {
         createUser: async (_, input, {user}) => {
-            return userService.createUser(user._id);
+            console.log('User:', input);
+            return userService.createUser(input?.userInput);
         }
     }
 };
