@@ -14,6 +14,7 @@ import ContactDetails from './components/Contacts/ContactDetails/ContactDetails'
 import ContactForm from './components/Contacts/ContactForm/ContactForm';
 import CreateCompany from './components/Companies/CreateCompany/CreateCompany';
 import UpdateContact from './components/Contacts/UpdateContact/UpdateContact';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const { authData, setAuth } = useAuth();
@@ -21,11 +22,9 @@ function App() {
   const [fetchCurrentUser, { loading, error, data }] = useLazyQuery(ME_QUERY, {
     onCompleted: (data) => {
       if (data && data.me) {
-        console.log('Fetch current user data', data);
         setAuth(data.me);
       }
       else{
-        console.log('Fetch current user data', data);
         setAuth(null);
       }
     },
@@ -49,15 +48,16 @@ function App() {
           {/* {authData && authData.userId  && <SideBar />} */}
           {/* <SideBar /> */}
           <Routes>
-            <Route path='/' exact />
             <Route path='/login' element={<Login />} />
-            <Route path='/companies' element={<Companies/>} />
-            <Route path='/company/:companyId' element={<CompanyDetails />} />
-            <Route path='/contacts' element={<Contacts />} />
-            <Route path='/contact/:contactId' element={<ContactDetails />} />
-            <Route path='/create-contact' element={<ContactForm />} /> 
-            <Route path='/create-company' element={<CreateCompany />} />
-            <Route path='/update-contact/:contactId' element={<UpdateContact />} />
+            <Route path="/" element={<ProtectedRoute><Companies /></ProtectedRoute>} />
+            <Route path="/companies" element={<ProtectedRoute><Companies /></ProtectedRoute>} />
+            <Route path='/company/:companyId' element={<ProtectedRoute><CompanyDetails /></ProtectedRoute>} />
+            <Route path='/contacts' element={<ProtectedRoute><Contacts /></ProtectedRoute>} />
+            <Route path='/contact/:contactId' element={<ProtectedRoute><ContactDetails /></ProtectedRoute>} />
+            <Route path='/create-contact' element={<ProtectedRoute><ContactForm /></ProtectedRoute>} /> 
+            <Route path='/create-company' element={<ProtectedRoute><CreateCompany /></ProtectedRoute>} />
+            <Route path='/update-contact/:contactId' element={<ProtectedRoute><UpdateContact /></ProtectedRoute>} />
+            <Route path='*' element={<h1>Not Found</h1>} />
           </Routes>
         </Router>
       </div>

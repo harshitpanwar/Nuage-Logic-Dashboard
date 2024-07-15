@@ -26,7 +26,7 @@ const CompanyDetails = () => {
         </h1>
       </div>
 
-      <div className="company-header mb-10 text-center">
+      <div className="flex flex-row justify-center">
         <img src={getCompany.logo || defaultLogo} alt={getCompany.name} className="company-logo w-20 h-20 rounded-full mx-auto" />
         <h2 className="text-xl font-bold mt-2">{getCompany.name}</h2>
       </div>
