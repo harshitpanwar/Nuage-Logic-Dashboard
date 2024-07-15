@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_CONTACTS } from '../../graphql/queries/contacts'; 
+import Loader from '../Loader/Loader';
 
 const Contacts = () => {
   const [page, setPage] = useState(1); 
@@ -12,7 +13,7 @@ const Contacts = () => {
     variables: { page, limit }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   const handleNext = (e) => {

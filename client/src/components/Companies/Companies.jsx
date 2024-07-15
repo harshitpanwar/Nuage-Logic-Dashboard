@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_COMPANIES } from '../../graphql/queries/companies';
-import './Companies.css'; // Import your CSS for styling
+import './Companies.css'; 
 import defaultLogo from '../../assets/company.jpg';
+import Loader from '../Loader/Loader';
 
 const Companies = () => {
   const [page, setPage] = useState(1); 
@@ -13,7 +14,7 @@ const Companies = () => {
     variables: { page, limit }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   const handleNext = (e) => {
