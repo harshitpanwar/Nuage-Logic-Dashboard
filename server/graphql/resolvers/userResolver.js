@@ -12,7 +12,6 @@ const userResolvers = {
     },
     Mutation: {
         createUser: async (_, input, {user}) => {
-            if(!user) throw new Error("Unauthorized");
             return userService.createUser(user._id);
         }
     }
