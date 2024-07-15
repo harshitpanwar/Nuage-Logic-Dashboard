@@ -1,6 +1,6 @@
-const Company = require('../../models/company');
-const User = require('../../models/user');
-const Contact = require('../../models/contact');
+const Company = require('../../models/company.js');
+const User = require('../../models/user.js');
+const Contact = require('../../models/contact.js');
 
 exports.getCompanies = async () => {
     try {

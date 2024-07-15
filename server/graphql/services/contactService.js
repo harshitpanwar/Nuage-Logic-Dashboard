@@ -1,4 +1,4 @@
-const Contact = require('../../models/contact');
+const Contact = require('../../models/contact.js');
 
 exports.getContacts = async (page=1, limit=5) => {
     try {
