@@ -1,0 +1,24 @@
+/* ContactDetails.css */
+
+.contact-details {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .details-section {
+    margin-top: 20px;
+  }
+  
+  .detail-row {
+    margin-bottom: 10px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  

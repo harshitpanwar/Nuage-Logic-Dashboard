@@ -1,0 +1,55 @@
+/* Companies.css */
+
+.companies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+.main-container {
+  margin-top: 10px;
+  padding: 20px;
+}
+
+.add-company-button {
+  text-decoration: none;
+  background-color: #3B7FE1;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  margin-left: 30px;
+
+}
+  
+.company-tile {
+  width: 250px;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.company-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* Ensure the logo maintains its aspect ratio */
+  margin-bottom: 10px;
+}
+
+.company-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.companies-container a {
+  text-decoration: none;
+  color: #333;
+}

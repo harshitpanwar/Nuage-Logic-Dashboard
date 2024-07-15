@@ -1,0 +1,8 @@
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    margin-left:  240px;
+}

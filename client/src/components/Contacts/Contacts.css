@@ -1,0 +1,43 @@
+/* Contacts.css
+
+.contacts-container {
+    padding: 20px;
+  }
+  
+  .contacts-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .contacts-table th,
+  .contacts-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .details-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .add-contact-button {
+    text-decoration: none;
+    margin-bottom: 20px;
+    background-color: #3B7FE1;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    margin: 10px;
+  }
+
+  .actions a {
+        text-decoration: none;
+        color: #fff;
+        background-color: #3B7FE1;
+        border-radius: 5px;
+        padding: 5px;
+    } */
