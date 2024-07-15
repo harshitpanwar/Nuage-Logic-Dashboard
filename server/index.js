@@ -3,11 +3,14 @@ const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const schema = require('./graphql');
 const getUserFromToken = require('./utils/getUserFromToken');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 4000;
 
+app.use(express.json());
+app.use(cors());
 
 const server = new ApolloServer({ 
     schema, 
