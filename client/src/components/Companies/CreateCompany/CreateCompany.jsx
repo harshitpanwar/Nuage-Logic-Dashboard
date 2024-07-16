@@ -3,6 +3,7 @@ import { useMutation, useLazyQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { CREATE_COMPANY } from '../../../graphql/mutations/company';
 import { GET_CONTACTS } from '../../../graphql/queries/contacts';
+import Loader from '../../Loader/Loader';
 
 const CreateCompany = () => {
   const [formData, setFormData] = useState({
@@ -82,7 +83,7 @@ const CreateCompany = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader/>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (

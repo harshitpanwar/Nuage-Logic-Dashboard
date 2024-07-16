@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { GET_CONTACT } from '../../../graphql/queries/contacts'; // Import GET_CONTACT query
 import { UPDATE_CONTACT } from '../../../graphql/mutations/contact'; // Import UPDATE_CONTACT mutation
 import { GET_COMPANIES } from '../../../graphql/queries/companies'; // Import GET_COMPANIES query
+import Loader from '../../Loader/Loader';
 // import './UpdateContact.css'; // Import CSS for styling
 
 const UpdateContact = () => {
@@ -73,7 +74,7 @@ const UpdateContact = () => {
     getCompanies();
   }, [data]);
 
-  if (loading || loadingCompanies) return <p>Loading...</p>;
+  if (loading || loadingCompanies) return <Loader/>;
   if (error || errorCompanies) return <p>Error: {error.message || errorCompanies.message}</p>;
 
   const handleChange = (e) => {

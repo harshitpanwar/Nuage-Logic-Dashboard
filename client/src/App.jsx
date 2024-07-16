@@ -31,7 +31,8 @@ function App() {
       }
     },
     onError: (error) => {
-      console.error('Fetch current user error', error);
+      setAuth(null);
+      console.error("Error fetching current user:", error);
     },
   });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Loader } from 'lucide-react';
+import Loader from '../components/Loader/Loader.jsx';
 
 const ProtectedRoute = ({
   children

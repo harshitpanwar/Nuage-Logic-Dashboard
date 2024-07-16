@@ -3,6 +3,7 @@ import { useMutation, useLazyQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { CREATE_CONTACT } from '../../../graphql/mutations/contact';
 import { GET_COMPANIES } from '../../../graphql/queries/companies';
+import Loader from '../../Loader/Loader';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const ContactForm = () => {
     }
   };
 
-  if(loading) return <p>Loading...</p>;
+  if(loading) return <Loader/>;
   if(error) return <p>Error: {error.message}</p>;
 
   return (

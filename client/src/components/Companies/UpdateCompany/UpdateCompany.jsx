@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GET_COMPANY } from '../../../graphql/queries/companies';
 import { UPDATE_COMPANY } from '../../../graphql/mutations/company';
 import { GET_CONTACTS } from '../../../graphql/queries/contacts';
+import Loader from '../../Loader/Loader';
 
 const UpdateCompany = () => {
   const { companyId } = useParams();
@@ -116,7 +117,7 @@ const UpdateCompany = () => {
     }
   };
 
-  if (companyLoading || contactsLoading) return <p>Loading...</p>;
+  if (companyLoading || contactsLoading) return <Loader/>;
   if (companyError) return <p>Error: {companyError.message}</p>;
   if (contactsError) return <p>Error: {contactsError.message}</p>;
 

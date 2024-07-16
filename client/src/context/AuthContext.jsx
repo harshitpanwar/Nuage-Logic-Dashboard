@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     setAuthData({
       userId: data.userId
     });
+    setLoading(false);
     localStorage.setItem('token', data.token);
 
   };
@@ -18,22 +19,20 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setAuthData(null);
     localStorage.removeItem('token');
+    setLoading(false);
 
   };
 
   const setAuth = (data) => {
     setAuthData({
-      userId: data._id
+      userId: data?._id
     });
-    if(data._id){
-      setLoading(false);
-    }
-    // localStorage.setItem('token', data.token);
+    setLoading(false);
   
   }
 
   return (
-    <AuthContext.Provider value={{ authData, login, logout, setAuth, loading }}>
+    <AuthContext.Provider value={{ authData, login, logout, setAuth, loading, setLoading }}>
       {children}
     </AuthContext.Provider>
   );

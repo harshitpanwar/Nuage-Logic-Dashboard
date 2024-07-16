@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { GET_CONTACT } from '../../../graphql/queries/contacts'; // Import GET_CONTACT query
 import './ContactDetails.css'; // Import CSS for styling
 import {Edit} from 'lucide-react'
+import Loader from '../../Loader/Loader';
 
 const ContactDetails = () => {
   const { contactId } = useParams();
@@ -12,7 +13,7 @@ const ContactDetails = () => {
     variables: { contactId },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader/>;
   if (error) return <p>Error: {error.message}</p>;
 
   const { contact } = data;
