@@ -15,7 +15,7 @@ import ContactForm from './components/Contacts/ContactForm/ContactForm';
 import CreateCompany from './components/Companies/CreateCompany/CreateCompany';
 import UpdateContact from './components/Contacts/UpdateContact/UpdateContact';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Loader } from 'lucide-react';
+import Loader from './components/Loader/Loader';
 import UpdateCompany from './components/Companies/UpdateCompany/UpdateCompany';
 
 function App() {
