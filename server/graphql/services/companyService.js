@@ -75,6 +75,53 @@ exports.createCompany = async (companyInput, user_id) => {
     }
 };
 
+exports.updateCompany = async (companyId, companyInput) => {
+
+    try {
+        const company = await Company.findById(companyId);
+        if (!company) {
+            throw new Error('Company not found');
+        }
+
+        company.name = companyInput.name;
+        company.groupsTag = companyInput.groupsTag;
+        company.status = companyInput.status;
+        company.assigned = companyInput.assigned;
+        company.notes = companyInput.notes;
+        company.logo = companyInput.logo;
+        company.summary = companyInput.summary;
+        company.opportunityTag = companyInput.opportunityTag;
+        company.specialties = companyInput.specialties;
+        company.industry = companyInput.industry;
+        company.revenue = companyInput.revenue;
+        company.size = companyInput.size;
+        company.locations = companyInput.locations;
+        company.officePhone = companyInput.officePhone;
+        company.website = companyInput.website;
+        company.mainContact = companyInput.mainContact;
+        company.contacts = companyInput.contacts;
+
+        // udpate the contact's companyId field
+        if(companyInput.contacts && companyInput.contacts.length > 0) {
+            companyInput.contacts.forEach(async contactId => {
+                const contact = await Contact.findById(contactId);
+                contact.companyId = companyId;
+                await contact.save();
+            }
+            );
+        }
+
+        const result = await company.save();
+        return {
+            ...result._doc,
+            _id: result.id
+        };
+    } catch (err) {
+        throw err;
+    }
+
+};
+
 exports.getUserById = async (userId) => {
     try {
         const user = await User.findById(userId);

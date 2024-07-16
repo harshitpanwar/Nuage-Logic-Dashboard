@@ -15,6 +15,8 @@ import ContactForm from './components/Contacts/ContactForm/ContactForm';
 import CreateCompany from './components/Companies/CreateCompany/CreateCompany';
 import UpdateContact from './components/Contacts/UpdateContact/UpdateContact';
 import ProtectedRoute from './components/ProtectedRoute';
+import { Loader } from 'lucide-react';
+import UpdateCompany from './components/Companies/UpdateCompany/UpdateCompany';
 
 function App() {
   const { authData, setAuth } = useAuth();
@@ -37,6 +39,8 @@ function App() {
     fetchCurrentUser();
   }, []);
 
+  if(loading) return <Loader/>
+
 
   return (
     <div className='app'>
@@ -57,6 +61,7 @@ function App() {
             <Route path='/create-contact' element={<ProtectedRoute><ContactForm /></ProtectedRoute>} /> 
             <Route path='/create-company' element={<ProtectedRoute><CreateCompany /></ProtectedRoute>} />
             <Route path='/update-contact/:contactId' element={<ProtectedRoute><UpdateContact /></ProtectedRoute>} />
+            <Route path='/update-company/:companyId' element={<ProtectedRoute><UpdateCompany /></ProtectedRoute>} />
             <Route path='*' element={<h1>Not Found</h1>} />
           </Routes>
         </Router>

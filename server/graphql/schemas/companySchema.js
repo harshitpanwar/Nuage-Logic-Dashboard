@@ -57,6 +57,7 @@ const companySchema = gql`
 
     type Mutation {
         createCompany(companyInput: CompanyInput): Company
+        updateCompany(companyId: ID!, companyInput: CompanyInput): Company
     }
 `;
 

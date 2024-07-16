@@ -41,41 +41,36 @@ export const CREATE_COMPANY = gql`
 `;
 
 export const UPDATE_COMPANY = gql`
-  mutation UpdateCompany($companyId: ID, $companyInput: CompanyInput) {
-    updateCompany(id: $companyId, input: $companyInput) {
+mutation UpdateCompany($companyId: ID!, $companyInput: CompanyInput) {
+  updateCompany(companyId: $companyId, companyInput: $companyInput) {
+    _id
+    name
+    groupsTag
+    status
+    assigned {
       _id
-      name
-      groupsTag
-      status
-      assigned {
-        _id
-        email
-      }
-      notes
-      logo
-      summary
-      opportunityTag
-      specialties
-      industry
-      revenue
-      size
-      locations
-      officePhone
-      website
-      mainContact {
-        _id
-        firstName
-        lastName
-        groupsTag
-        status
-      }
-      contacts {
-        _id
-        firstName
-        lastName
-        groupsTag
-        status
-      }
+      email
+    }
+    notes
+    logo
+    summary
+    opportunityTag
+    specialties
+    industry
+    revenue
+    size
+    locations
+    officePhone
+    website
+    mainContact {
+      firstName
+      lastName
+      workEmail
+    }
+    contacts {
+      firstName
+      lastName
+      workEmail
     }
   }
-`;
+}`;

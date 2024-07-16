@@ -18,6 +18,10 @@ const companyResolvers = {
             if(!user) throw new Error("Unauthorized");
             console.log("companyInput", companyInput, user._id);
             return companyService.createCompany(companyInput, user._id);
+        },
+        updateCompany: async (_, { companyId, companyInput }, {user}) => {
+            if(!user) throw new Error("Unauthorized");
+            return companyService.updateCompany(companyId, companyInput);
         }
     },
     Company: {

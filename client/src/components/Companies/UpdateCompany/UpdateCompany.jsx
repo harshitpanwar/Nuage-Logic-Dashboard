@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GET_COMPANY } from '../../../graphql/queries/companies';
+import { UPDATE_COMPANY } from '../../../graphql/mutations/company';
 import { GET_CONTACTS } from '../../../graphql/queries/contacts';
-import defautLogo from '../../../assets/company.jpg';
-import {ArrowLeft, Edit} from 'lucide-react';
 
 const UpdateCompany = () => {
   const { companyId } = useParams();
@@ -69,6 +68,12 @@ const UpdateCompany = () => {
     }
   }, [companyData]);
 
+  const [updateCompany] = useMutation(UPDATE_COMPANY, {
+    variables: {
+        companyId,
+        companyInput: formData
+    }
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -118,25 +123,8 @@ const UpdateCompany = () => {
   return (
     <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
-        <div className='flex flex-col'>
-          <div className='flex flex-row justify-between mb-5'>
-            <button onClick={() => navigate('/companies')} className='flex flex-row items-center px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
-              <ArrowLeft size={16} />
-              <span className='ml-2'>
-                Back to Companies                
-              </span>
-            </button>
-            <button onClick={() => navigate(`/update-company/${companyId}`)} className='flex flex-row items-center px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3'>
-              <span className='mr-2'>
-                Update Company
-              </span>  
-              <Edit size={16} />          
-            </button>
-          </div>
-          <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">Company Details</h1>
-          <img src={formData.logo || defaultLogo} alt={formData.name} className="h-20 w-20 mx-auto rounded-full" />
-        </div>
-        <form className="flex flex-col justify-center align-middle mt-10">
+        <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">Update Company</h1>
+        <form className="flex flex-col justify-center align-middle" onSubmit={handleSubmit}>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input
@@ -147,7 +135,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="name"
@@ -163,7 +151,7 @@ const UpdateCompany = () => {
                 value={formData.status}
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                disabled
+                required
               >
                 <option value="">Select Status</option>
                 <option value="Active">Active</option>
@@ -186,7 +174,7 @@ const UpdateCompany = () => {
                 value={formData.groupsTag}
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                disabled
+                required
               >
                 <option value="">Select Group Tag</option>
                 <option value="active contacts">Active Contacts</option>
@@ -211,9 +199,17 @@ const UpdateCompany = () => {
                       onChange={(e) => handleLocationChange(index, e.target.value)}
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
-                      disabled
+                      required
                     />
-
+                    {index === formData.locations.length - 1 && (
+                      <button
+                        type="button"
+                        onClick={addLocationField}
+                        className="ml-2 p-1 border border-gray-300 rounded"
+                      >
+                        +
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -236,7 +232,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="industry"
@@ -254,7 +250,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="website"
@@ -275,7 +271,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="summary"
@@ -293,7 +289,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="specialties"
@@ -314,7 +310,7 @@ const UpdateCompany = () => {
                 onChange={handleSizeChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="size"
@@ -332,7 +328,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="opportunityTag"
@@ -353,7 +349,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="revenue"
@@ -371,7 +367,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="officePhone"
@@ -391,7 +387,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="notes"
@@ -407,7 +403,7 @@ const UpdateCompany = () => {
                 value={formData.mainContact}
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                disabled
+                required
               >
                 <option value="">Select Main Contact</option>
                 {
@@ -427,7 +423,7 @@ const UpdateCompany = () => {
             </div>
           </div>
 
-          {/* <div className="grid md:grid-cols-2 md:gap-6">
+          <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="text"
@@ -437,7 +433,7 @@ const UpdateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                disabled
+                required
               />
               <label
                 htmlFor="logo"
@@ -447,8 +443,8 @@ const UpdateCompany = () => {
               </label>
             </div>
 
-          </div> */}
-{/* 
+          </div>
+
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
@@ -463,7 +459,7 @@ const UpdateCompany = () => {
             >
               Cancel
             </button>
-          </div> */}
+          </div>
         </form>
       </div>
     </div>

@@ -197,6 +197,7 @@ const CreateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                required
               />
               <label
                 htmlFor="website"
@@ -235,6 +236,7 @@ const CreateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                required
               >
                 <option value="0 - $100k">0 - $100k</option>
                 <option value="$100k - $500k">$100k - $500k</option>
@@ -311,6 +313,7 @@ const CreateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                required
               />
               <label
                 htmlFor="specialties"
@@ -328,6 +331,7 @@ const CreateCompany = () => {
                 onChange={handleChange}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                required
               />
               <label
                 htmlFor="opportunityTag"
@@ -427,6 +431,7 @@ const CreateCompany = () => {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               rows="4"
+              required
             />
             <label
               htmlFor="notes"
@@ -437,12 +442,19 @@ const CreateCompany = () => {
           </div>
 
 
-          <div className='flex flex-row align-middle justify-center'>
+          <div className='flex items-center justify-between mt-4'>
             <button
               type="submit"
               className="w-fit text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/companies')}
+              className="px-4 py-2 bg-gray-600 text-white font-medium text-sm rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            >
+              Cancel
             </button>
           </div>
           
