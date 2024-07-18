@@ -34,4 +34,14 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     })
     .catch(err => console.error(err));
 
+mongoose.connection.once('open', () => {
+    console.log('Connected to database');
+    if(process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD){
+        console.log('Creating admin user');
+        const createAdmin = require('./utils/createAdmin');
+        createAdmin();
+    }
+}
+);
+
 startServer();
