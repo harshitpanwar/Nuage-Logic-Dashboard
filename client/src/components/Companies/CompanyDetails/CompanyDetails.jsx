@@ -3,7 +3,7 @@ import { useLazyQuery, useQuery } from '@apollo/client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GET_COMPANY } from '../../../graphql/queries/companies';
 import { GET_CONTACTS } from '../../../graphql/queries/contacts';
-import defautLogo from '../../../assets/company.jpg';
+import defaultLogo from '../../../assets/company.jpg';
 import {ArrowLeft, Edit} from 'lucide-react';
 import Loader from '../../Loader/Loader';
 
