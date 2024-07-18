@@ -169,7 +169,7 @@ const UpdateContact = () => {
               required
             >
               {companiesData &&
-                companiesData.getCompanies.map((company) => (
+                companiesData?.getCompanies?.companies?.map((company) => (
                   <option key={company._id} value={company._id}>
                     {company.name}
                   </option>
