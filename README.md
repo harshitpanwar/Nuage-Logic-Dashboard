@@ -48,9 +48,9 @@ The user is required to:
 1. push the code to their github/gitlab account.
 2. Create a vercel account and connect the github/gitlab account with it.
 3. Go the Add new button on the dashboard and select project.![image](https://github.com/user-attachments/assets/1d4d2126-bdea-45a7-a1ff-ea6e626e45cf)
-4. Select the repository in which they have uploaded the code and click on import.![image](https://github.com/user-attachments/assets/8fd8b007-2220-4b76-9c3b-b69a7964d631)
+4. Select the repository, in which they have uploaded the code, and click on import.![image](https://github.com/user-attachments/assets/8fd8b007-2220-4b76-9c3b-b69a7964d631)
 
-5. Configure the project, click on edit and select the server folder. And also add your environment variables![image](https://github.com/user-attachments/assets/5788760d-472c-4a69-b16e-bcc7877fb290)
+5. Configure the project, click on edit and change the root directory from ./ to server folder. And also add your environment variables![image](https://github.com/user-attachments/assets/5788760d-472c-4a69-b16e-bcc7877fb290)
 6. Click on deploy and the backend should be deployed.
 7. Once the deployment is complete, you will receive a URL for the backend. ![image](https://github.com/user-attachments/assets/ec79ab9a-3867-4b09-85d7-48797117d61d)
 8. Copy the URL and keep it with you for further steps.
