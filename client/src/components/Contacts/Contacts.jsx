@@ -83,7 +83,7 @@ const Contacts = () => {
                             Active
                           </span>:
                           <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
-                            inActive
+                            Inactive
                           </span>
 
                         }
