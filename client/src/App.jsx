@@ -51,7 +51,7 @@ function App() {
 
         <div className='flex flex-row items-center w-full'>
             <SideBar />
-          <div className='ml-0 md:ml-[200px] w-full'>
+          <div className={authData?.userId?'ml-0 md:ml-[200px] w-full':'w-full'}>
             <Routes>
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
