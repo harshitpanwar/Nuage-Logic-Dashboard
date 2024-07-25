@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_CONTACTS } from '../../graphql/queries/contacts'; 
 import Loader from '../Loader/Loader';
+import { Edit } from 'lucide-react';
 
 const Contacts = () => {
   const [page, setPage] = useState(1); 
@@ -27,7 +28,7 @@ const Contacts = () => {
   }
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-4">
+    <div className="mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div>
           <h2 className="text-lg font-semibold">Contacts</h2>
@@ -79,10 +80,10 @@ const Contacts = () => {
                       <td className="whitespace-nowrap px-4 py-4">
                         {
                           contact.status === 'active' ?
-                          <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                          <span className="p-1 inline-flex rounded-full bg-green-100 px-3 text-xs font-semibold leading-5 text-green-800">
                             Active
                           </span>:
-                          <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                          <span className="p-1 inline-flex rounded-full bg-red-100 px-3 text-xs font-semibold leading-5 text-red-800">
                             Inactive
                           </span>
 
@@ -91,9 +92,12 @@ const Contacts = () => {
                       </td>
                       <td className="whitespace-nowrap px-4 py-4">
                         <Link to={`/contact/${contact._id}`} className="text-sm font-medium text-gray-900">
-                        <span className="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800">
-                            View Details
+                        <span className="p-1 inline-flex rounded-full bg-blue-100 px-3 text-xs font-semibold leading-5 text-blue-800">
+                            View
                           </span>
+                        </Link>
+                        <Link to={`/update-contact/${contact._id}`} className='inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3 items-center'>
+                            <span className='mr-1'>Edit</span><Edit size={16} />
                         </Link>
                       </td>
                     </tr>
@@ -125,7 +129,7 @@ const Contacts = () => {
         }
 
       </div>
-    </section>
+    </div>
   );
 };
 

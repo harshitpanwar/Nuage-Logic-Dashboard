@@ -30,9 +30,11 @@ const ContactForm = () => {
   const [companiesData, setCompaniesData] = useState(null);
 
   const [getCompanies, { called, loading, data, error}] = useLazyQuery(GET_COMPANIES, {
+    variables: { showAll: true },
     fetchPolicy: 'network-only',
     onCompleted: (data) => {
         setCompaniesData(data);
+        setFormData({ ...formData, companyId: data.getCompanies.companies[0]._id });
         handleChange({ target: { name: 'companyId', value: data.getCompanies[0]._id } });
     }
   });
@@ -54,7 +56,6 @@ const ContactForm = () => {
       await createContact({ variables: { input: formData } });
       navigate('/contacts');
     } catch (error) {
-      console.error('Error creating contact:', error);
     }
   };
 
@@ -63,8 +64,8 @@ const ContactForm = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
-      <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-cent">
+      <div className="max-w-md mx-auto items-center">
+        <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">
           Create Contact
         </h1>
         <div class="grid md:grid-cols-2 md:gap-6">
@@ -379,15 +380,25 @@ const ContactForm = () => {
             Notes
           </label>
         </div>
-        
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={handleSubmit}
-          disabled={submitContactLoading}
-        >
-          Create Contact
-        </button>
+
+        <div className='flex items-center justify-between mt-4'>
+          <button
+            type="submit"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onClick={handleSubmit}
+            disabled={submitContactLoading}
+          >
+            Submit
+          </button>
+          <button
+                type="button"
+                onClick={() => navigate('/contacts')}
+                className="px-4 py-2 bg-gray-600 text-white font-medium text-sm rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              >
+            Cancel
+          </button>
+        </div>
+
 
         {
           submitContactLoading && <p className="mt-4 text-center">Loading...</p>

@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { useParams, useNavigate } from 'react-router-dom';
 import { GET_CONTACT } from '../../../graphql/queries/contacts'; // Import GET_CONTACT query
 import './ContactDetails.css'; // Import CSS for styling
-import {Edit} from 'lucide-react'
+import {ArrowLeft, Edit} from 'lucide-react'
 import Loader from '../../Loader/Loader';
 
 const ContactDetails = () => {
@@ -26,19 +26,26 @@ const ContactDetails = () => {
   return (
     <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
-        <div className='flex flex-row justify-between items-baseline'>
+      <div className='flex flex-row justify-between mb-5'>
+          <button onClick={() => navigate('/contacts')} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
+            <ArrowLeft size={16} />
+            <span className='ml-2'>
+              Back to Contacts                
+            </span>
+          </button>
+          <button onClick={() => navigate(`/update-contact/${contactId}`)} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3'>
+            <span className='mr-2'>
+              Update Contact
+            </span>  
+            <Edit size={16} />          
+          </button>
+        </div>
+
+        <div className='flex flex-row justify-center items-baseline'>
+
           <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">
             Contact Details
           </h1>
-          <button
-            className="flex flex-row items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            onClick={handleUpdate}
-          >
-            
-            <span>Update</span>
-            <Edit size={16}/>
-
-          </button>
         </div>
         <div className="grid md:grid-cols-2 md:gap-6 mt-10">
           <div className="relative z-0 w-full mb-5 group">

@@ -4,9 +4,9 @@ const contactService = require('../services/contactService');
 
 const companyResolvers = {
     Query: {
-        getCompanies: async (_, {page, limit}, {user}) => {
+        getCompanies: async (_, {page, limit, showAll}, {user}) => {
             // if(!user) throw new Error("Unauthorized");
-            return companyService.getCompanies(page, limit);
+            return companyService.getCompanies(page, limit, showAll);
         },
         getCompany: async (_, { companyId }, {user}) => {
             if(!user) throw new Error("Unauthorized");
@@ -16,7 +16,6 @@ const companyResolvers = {
     Mutation: {
         createCompany: async (_, { companyInput }, {user}) => {
             if(!user) throw new Error("Unauthorized");
-            console.log("companyInput", companyInput, user._id);
             return companyService.createCompany(companyInput, user._id);
         },
         updateCompany: async (_, { companyId, companyInput }, {user}) => {

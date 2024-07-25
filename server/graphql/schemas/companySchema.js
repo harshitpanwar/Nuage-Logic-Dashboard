@@ -48,7 +48,7 @@ const companySchema = gql`
     }
 
     type Query {
-        getCompanies(page: Int, limit: Int): paginatedCompany
+        getCompanies(page: Int, limit: Int, showAll: Boolean): paginatedCompany
     }
 
     type Query {

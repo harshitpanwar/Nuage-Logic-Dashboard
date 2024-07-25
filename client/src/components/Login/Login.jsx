@@ -21,7 +21,6 @@ const Login = () => {
       }
     },
     onError: (error) => {
-      console.error("Login error", error);
     },
   });
 
@@ -75,6 +74,7 @@ const Login = () => {
             </button>
           </div>
         </form>
+        <p className="mt-4 text-center"> Don't have an account? <a href="/signup" className="text-blue-500">Sign Up</a></p>
         {loading && <p className="mt-4 text-center">Loading...</p>}
         {error && <p className="mt-4 text-center text-red-500">Error: {error.message}</p>}
       </div>

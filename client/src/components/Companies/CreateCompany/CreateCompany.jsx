@@ -79,7 +79,6 @@ const CreateCompany = () => {
       await createCompany({ variables: { companyInput: formData } });
       navigate('/companies');
     } catch (error) {
-      console.error('Error creating company:', error);
     }
   };
 

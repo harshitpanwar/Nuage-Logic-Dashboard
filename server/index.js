@@ -29,15 +29,12 @@ async function startServer() {
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(port, () => {
-            console.log(`Server is running on http://localhost:${port}${server.graphqlPath}`);
         });
     })
     .catch(err => console.error(err));
 
 mongoose.connection.once('open', () => {
-    console.log('Connected to database');
     if(process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD){
-        console.log('Creating admin user');
         const createAdmin = require('./utils/createAdmin');
         createAdmin();
     }

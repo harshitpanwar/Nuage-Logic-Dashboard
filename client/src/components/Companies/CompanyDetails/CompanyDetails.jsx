@@ -108,7 +108,6 @@ const UpdateCompany = () => {
       await updateCompany({ variables: { companyId, companyInput: formData } });
       navigate('/companies');
     } catch (error) {
-      console.error('Error updating company:', error);
     }
   };
 

@@ -19,7 +19,6 @@ const Companies = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const handleNext = (e) => {
-    console.log('next', page);
     e.preventDefault();
     setPage(page + 1);
   }
@@ -109,21 +108,21 @@ const Companies = () => {
                       <td className='whitespace-nowrap px-4 py-4 text-sm text-gray-500'>
                         
                         {company.status == 'Active' ? (
-                          <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+                          <span className='px-3 p-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
                             Active
                           </span>
                         ) : (
-                          <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
+                          <span className='px-3 p-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
                             Inactive
                           </span>
                         )}
                       </td>
                       <td className='whitespace-nowrap px-4 py-4 text-sm text-gray-500'>
                         <div className='flex flex-row'>
-                          <Link to={`/company/${company._id}`} className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
+                          <Link to={`/company/${company._id}`} className='inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
                             View
                           </Link>
-                          <Link to={`/update-company/${company._id}`} className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3'>
+                          <Link to={`/update-company/${company._id}`} className='inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3 items-center'>
                             <span className='mr-1'>Edit</span><Edit size={16} />
                           </Link>
                         </div>

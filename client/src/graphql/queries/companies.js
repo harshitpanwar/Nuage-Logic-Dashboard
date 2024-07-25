@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_COMPANIES = gql`
-query GetCompanies($page: Int, $limit: Int) {
-  getCompanies(page: $page, limit: $limit) {
+query GetCompanies($page: Int, $limit: Int, $showAll: Boolean) {
+  getCompanies(page: $page, limit: $limit, showAll: $showAll) {
     companies {
       _id
       name

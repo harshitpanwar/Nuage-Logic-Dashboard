@@ -11,7 +11,6 @@ const createAdmin = async () => {
                 password: hashedPassword
             });
             await newAdmin.save();
-            console.log('Admin created successfully');
         }
         else{
             
@@ -19,7 +18,6 @@ const createAdmin = async () => {
             const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 12);
             admin.password = hashedPassword;
             await admin.save();
-            console.log('Admin password updated successfully');
         }
     }
     catch (error) {

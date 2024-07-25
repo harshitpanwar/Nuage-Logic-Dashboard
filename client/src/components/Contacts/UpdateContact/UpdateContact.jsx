@@ -5,6 +5,7 @@ import { GET_CONTACT } from '../../../graphql/queries/contacts'; // Import GET_C
 import { UPDATE_CONTACT } from '../../../graphql/mutations/contact'; // Import UPDATE_CONTACT mutation
 import { GET_COMPANIES } from '../../../graphql/queries/companies'; // Import GET_COMPANIES query
 import Loader from '../../Loader/Loader';
+import { ArrowLeft, Edit } from 'lucide-react';
 // import './UpdateContact.css'; // Import CSS for styling
 
 const UpdateContact = () => {
@@ -92,13 +93,26 @@ const UpdateContact = () => {
         },
       });
     } catch (error) {
-      console.error('Error updating contact:', error);
     }
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
       <div className="max-w-md mx-auto">
+        <div className='flex flex-row justify-between mb-5'>
+          <button onClick={() => navigate('/contacts')} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
+            <ArrowLeft size={16} />
+            <span className='ml-2'>
+              Back to Contacts                
+            </span>
+          </button>
+          <button onClick={() => navigate(`/contact/${contactId}`)} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3'>
+            <span className='mr-2'>
+              View Contact
+            </span>  
+            <Edit size={16} />          
+          </button>
+        </div>
         <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">Update Contact</h1>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 w-full mb-5 group">
@@ -413,15 +427,17 @@ const UpdateContact = () => {
             Notes
           </label>
         </div>
-        
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={handleSubmit}
-          disabled={updateContactLoading}
-        >
-          update Contact
-        </button>
+        <div className='flex items-center justify-center mt-4'>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            onClick={handleSubmit}
+            disabled={updateContactLoading}
+          >
+            Update Contact
+          </button>
+
+        </div>
 
       </div>
     </div>

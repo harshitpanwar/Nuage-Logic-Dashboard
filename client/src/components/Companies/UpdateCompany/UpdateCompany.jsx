@@ -5,6 +5,7 @@ import { GET_COMPANY } from '../../../graphql/queries/companies';
 import { UPDATE_COMPANY } from '../../../graphql/mutations/company';
 import { GET_CONTACTS } from '../../../graphql/queries/contacts';
 import Loader from '../../Loader/Loader';
+import { ArrowLeft, Edit } from 'lucide-react';
 
 const UpdateCompany = () => {
   const { companyId } = useParams();
@@ -113,7 +114,6 @@ const UpdateCompany = () => {
       await updateCompany({ variables: { companyId, companyInput: formData } });
       navigate('/companies');
     } catch (error) {
-      console.error('Error updating company:', error);
     }
   };
 
@@ -123,7 +123,23 @@ const UpdateCompany = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto my-5 p-5 border border-gray-300 rounded-lg bg-gray-100">
+      
       <div className="max-w-md mx-auto">
+        <div className='flex flex-row justify-between mb-5'>
+          <button onClick={() => navigate('/companies')} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 p-1 px-3'>
+            <ArrowLeft size={16} />
+            <span className='ml-2'>
+              Back to Companies                
+            </span>
+          </button>
+          <button onClick={() => navigate(`/company/${companyId}`)} className='flex flex-row items-center text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 p-1 px-3'>
+            <span className='mr-2'>
+              View Company
+            </span>  
+            <Edit size={16} />          
+          </button>
+        </div>
+
         <h1 className="text-2xl font-semibold text-gray-900 mb-5 text-center">Update Company</h1>
         <form className="flex flex-col justify-center align-middle" onSubmit={handleSubmit}>
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -446,20 +462,14 @@ const UpdateCompany = () => {
 
           </div>
 
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-center mt-4">
             <button
               type="submit"
               className="px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Update Company
             </button>
-            <button
-              type="button"
-              onClick={() => navigate('/companies')}
-              className="px-4 py-2 bg-gray-600 text-white font-medium text-sm rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-            >
-              Cancel
-            </button>
+          
           </div>
         </form>
       </div>

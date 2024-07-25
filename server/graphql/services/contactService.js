@@ -2,7 +2,6 @@ const Contact = require('../../models/contact.js');
 
 exports.getContacts = async (page=1, limit=5) => {
     try {
-        console.log("page", page);
         // const contacts = await Contact.find().populate('companyId');
         const contacts = await Contact.find().skip((page - 1) * limit).limit(limit).populate('companyId');
         const totalContacts = await Contact.countDocuments();
@@ -53,7 +52,6 @@ exports.getContactByCompanyId = async (companyId) => {
 exports.createContact = async (contactInput) => {
     try {
 
-        console.log("contactInput", contactInput);
         const contact = new Contact({
             groupsTag: contactInput.groupsTag,
             displayName: `${String(contactInput.firstName).trim()} ${String(contactInput.lastName).trim()}`,
@@ -80,7 +78,6 @@ exports.createContact = async (contactInput) => {
             _id: result.id
         };
     } catch (err) {
-        console.log("err", err);   
         throw err;
     }
 }

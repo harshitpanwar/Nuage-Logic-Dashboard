@@ -5,12 +5,10 @@ const contactResolvers = {
     Query: {
         contacts: async (_, { page, limit }, {user}) => {
             if(!user) throw new Error("Unauthorized");
-            console.log('page', page);
             return contactService.getContacts(page, limit);
         },
         contact: async (_, {id: contactId}, {user}) => {
             if(!user) throw new Error("Unauthorized");
-            console.log('contactId', contactId);
             return contactService.getContact(contactId);
         }
     },
