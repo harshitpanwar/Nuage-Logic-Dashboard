@@ -49,9 +49,9 @@ function App() {
         <Router>
         <Header />
 
-        <div className='flex flex-row items-center w-full'>
+        <div className='flex flex-row w-full overflow-x-auto'>
             <SideBar />
-          <div className={authData?.userId?'ml-0 md:ml-[200px] w-full':'w-full'}>
+          <div className={authData?.userId?'ml-[10px] md:ml-[200px] overflow-y-auto w-full':'w-full'}>
             <Routes>
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />

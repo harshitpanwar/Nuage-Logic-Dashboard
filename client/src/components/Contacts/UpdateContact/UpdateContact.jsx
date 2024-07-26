@@ -44,6 +44,7 @@ const UpdateContact = () => {
   const [companiesData, setCompaniesData] = useState(null);
 
   const [getCompanies, { called, loading: loadingCompanies, dataCompanies, errorCompanies}] = useLazyQuery(GET_COMPANIES, {
+    variables: { showAll: true },
     onCompleted: (data) => {
         setCompaniesData(data);
     }
