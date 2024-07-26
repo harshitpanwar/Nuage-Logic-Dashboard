@@ -48,7 +48,7 @@ const SideBar = () => {
     <div className='ml-4'>
       <a
         href='/companies'
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/companies')}`}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/companies') || checkActiveLink('/')}`}
       >
         Companies
       </a>
