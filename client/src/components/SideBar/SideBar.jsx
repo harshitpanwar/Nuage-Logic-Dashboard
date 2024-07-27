@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
   const { authData } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [widthCss, setWidthCss] = useState('w-[50px]');
-
+  const [activeLink, setActiveLink] = useState('');
+  const navigate = useNavigate();
+  
   const handleMenuToggle = () => {
     if (menuOpen) {
       setWidthCss('w-[50px]');
@@ -16,10 +19,9 @@ const SideBar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // check the window url and highlight the active link
-  const checkActiveLink = (url) => {
-    return window.location.pathname === url ? 'bg-blue-800' : '';
-  };
+  useEffect(() => {
+    setActiveLink(window.location.pathname.split('/')[1]);
+  }, []);
 
   if (!authData || !authData.userId) return null;
 
@@ -36,28 +38,28 @@ const SideBar = () => {
 
     <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p>
     <div className='ml-4'>
-      <a
-        href='/settings'
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/settings')}`}
+      <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='settings' && 'bg-blue-800'}`}
       >
         Settings
-      </a>
+      </Link>
     </div>
 
     <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p>
     <div className='ml-4'>
-      <a
-        href='/companies'
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/companies') || checkActiveLink('/')}`}
+      <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
       >
         Companies
-      </a>
-      <a
-        href='/contacts'
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/contacts')}`}
+      </Link>
+      <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
       >
         Contacts
-      </a>
+      </Link>
     </div>
   
   </div>
@@ -95,29 +97,28 @@ const SideBar = () => {
       </button>
       <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p>
     <div className='ml-4'>
-      <a
-        href='/settings'
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/settings')}`}
+      <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='settings' && 'bg-blue-800'}`}
       >
         Settings
-      </a>
+      </Link>
     </div>
 
     <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p>
     <div className='ml-4'>
-        <a
-          href='/companies'
-          className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/companies')}`}
-        >
-          Companies
-        </a>
-        <a
-          href='/contacts'
-          className={`text-white block px-3 py-2 hover:bg-blue-800 ${checkActiveLink('/contacts')}`}
-        >
-          Contacts
-        </a>
-    </div>
+    <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
+      >
+        Companies
+      </Link>
+      <Link
+        onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
+        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
+      >
+        Contacts
+      </Link>    </div>
     </div>
   )}
 
