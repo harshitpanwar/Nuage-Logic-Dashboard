@@ -42,31 +42,35 @@ const SideBar = () => {
       Home
     </Link> */}
 
-    <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p>
-    <div className='ml-4'>
+    {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p> */}
+    {activeLink==='settings' && (
+      <div className='ml-4'>
       <Link
         onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
         className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='settings' && 'bg-blue-800'}`}
       >
         Settings
       </Link>
-    </div>
+      </div>
+    )}
 
-    <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p>
-    <div className='ml-4'>
-      <Link
-        onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
-      >
-        Companies
-      </Link>
-      <Link
-        onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
-      >
-        Contacts
-      </Link>
-    </div>
+    {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p> */}
+    {(activeLink==='companies' || activeLink ==='contacts') && (
+      <div className='ml-4'>
+        <Link
+          onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
+          className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
+        >
+          Companies
+        </Link>
+        <Link
+          onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
+          className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
+        >
+          Contacts
+        </Link>
+      </div>
+    )}
   
   </div>
 
@@ -101,30 +105,39 @@ const SideBar = () => {
           )}
         </svg>
       </button>
-      <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p>
-    <div className='ml-4'>
-      <Link
-        onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='settings' && 'bg-blue-800'}`}
-      >
-        Settings
-      </Link>
-    </div>
+      {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p> */}
+      {activeLink==='settings' && (
+        <div className='ml-4'>
+        <Link
+          onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
+          className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='settings' && 'bg-blue-800'}`}
+        >
+          Settings
+        </Link>
+        </div>
+        ) 
+      }
 
-    <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p>
-    <div className='ml-4'>
-    <Link
-        onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
-      >
-        Companies
-      </Link>
-      <Link
-        onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
-        className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
-      >
-        Contacts
-      </Link>    </div>
+
+    {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p> */}
+    {(activeLink==='companies' || activeLink ==='contacts') && (
+          <div className='ml-4'>
+          <Link
+              onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
+              className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='companies' && 'bg-blue-800'}`}
+            >
+              Companies
+            </Link>
+            <Link
+              onClick={(e)=> {e.preventDefault();setActiveLink('contacts'); navigate('/contacts')}}
+              className={`text-white block px-3 py-2 hover:bg-blue-800 ${activeLink==='contacts' && 'bg-blue-800'}`}
+            >
+              Contacts
+            </Link>
+          </div>
+        )
+    }
+
     </div>
   )}
 

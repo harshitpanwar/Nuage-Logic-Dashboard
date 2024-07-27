@@ -64,6 +64,7 @@ function App() {
               <Route path='/create-company' element={<ProtectedRoute><CreateCompany /></ProtectedRoute>} />
               <Route path='/update-contact/:contactId' element={<ProtectedRoute><UpdateContact /></ProtectedRoute>} />
               <Route path='/update-company/:companyId' element={<ProtectedRoute><UpdateCompany /></ProtectedRoute>} />
+              <Route path='/settings' element={<ProtectedRoute><div className='flex justify-center items-center'>Settings</div></ProtectedRoute>} />
               <Route path='*' element={<ProtectedRoute><Companies /></ProtectedRoute>} />
             </Routes>
           </div>
