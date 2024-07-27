@@ -20,6 +20,12 @@ const SideBar = () => {
   };
 
   useEffect(() => {
+
+    if(window.location.pathname==='/'){
+      setActiveLink('companies');
+      return;
+    }
+
     setActiveLink(window.location.pathname.split('/')[1]);
   }, []);
 
