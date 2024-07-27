@@ -8,6 +8,8 @@ const SideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [widthCss, setWidthCss] = useState('w-[50px]');
   const [activeLink, setActiveLink] = useState('');
+  const [showHome, setShowHome] = useState(false);
+  const [showSales, setShowSales] = useState(false);
   const navigate = useNavigate();
   
   const handleMenuToggle = () => {
@@ -20,6 +22,25 @@ const SideBar = () => {
   };
 
   useEffect(() => {
+
+    const pathname = window.location.pathname;
+
+    if(
+      pathname==='/' || pathname==='/companies' || pathname==='/contacts' || 
+      pathname==='/company' || pathname==='/contact' || pathname==='/create-company' || 
+      pathname==='/update-company' || pathname==='/update-contact' || pathname==='/create-contact'||
+      pathname.includes('/contact') || pathname.includes('/company') || pathname.includes('/update-company') || pathname.includes('/update-contact')
+    ){
+      setShowSales(true);
+    }else{
+      setShowSales(false);
+    }
+    
+    if(pathname==='/settings'){
+      setShowHome(true);
+    }else{
+      setShowHome(false);
+    }
 
     if(window.location.pathname==='/'){
       setActiveLink('companies');
@@ -43,7 +64,7 @@ const SideBar = () => {
     </Link> */}
 
     {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p> */}
-    {activeLink==='settings' && (
+    {showHome && (
       <div className='ml-4'>
       <Link
         onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
@@ -55,7 +76,7 @@ const SideBar = () => {
     )}
 
     {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p> */}
-    {(activeLink==='companies' || activeLink ==='contacts') && (
+    {showSales && (
       <div className='ml-4'>
         <Link
           onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
@@ -106,7 +127,7 @@ const SideBar = () => {
         </svg>
       </button>
       {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Home</p> */}
-      {activeLink==='settings' && (
+      {showHome && (
         <div className='ml-4'>
         <Link
           onClick={(e)=> {e.preventDefault();setActiveLink('settings'); navigate('/settings')}}
@@ -120,7 +141,7 @@ const SideBar = () => {
 
 
     {/* <p className='text-white block px-3 py-2 rounded-md text-base font-medium'>Sales</p> */}
-    {(activeLink==='companies' || activeLink ==='contacts') && (
+    {showSales && (
           <div className='ml-4'>
           <Link
               onClick={(e)=> {e.preventDefault();setActiveLink('companies'); navigate('/companies')}}
