@@ -27,7 +27,7 @@ const SideBar = () => {
     }
 
     setActiveLink(window.location.pathname.split('/')[1]);
-  }, []);
+  }, [window.location.pathname]);
 
   if (!authData || !authData.userId) return null;
 

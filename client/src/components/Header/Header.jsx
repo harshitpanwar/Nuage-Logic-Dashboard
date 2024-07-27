@@ -55,18 +55,18 @@ const Header = () => {
             </div>
             <div className='sm:block sm:ml-6 md:ml-[100px]'>
               <div className='flex flex-row justify-center'>
-                <a
-                  href='/settings'
+                <Link
+                  to='/settings'
                   className='text-white hover:bg-blue-800 px-3 py-2 rounded-md text-sm font-medium'
                 >
                   Home
-                </a>
-                <a
-                  href='/companies'
+                </Link>
+                <Link
+                  to='/companies'
                   className='text-white hover:bg-blue-800 px-3 py-2 rounded-md text-sm font-medium'
                 >
                   Sales
-                </a>
+                </Link>
                
               </div>
             </div>
