@@ -53,7 +53,7 @@ const Header = () => {
             <div className='flex flex-col justify-center'>
               <img className='h-8 w-auto' src={HeaderImage} alt='Header' />
             </div>
-            <div className='sm:block sm:ml-6 md:ml-[100px]'>
+            <div className='hidden sm:block sm:ml-6 md:ml-[100px]'>
               <div className='flex flex-row justify-center'>
                 <Link
                   to='/settings'
